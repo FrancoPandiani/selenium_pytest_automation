@@ -28,6 +28,16 @@ class OutlookPage:
         
         # Hacer clic en el botón "Iniciar sesión"
         self.driver.find_element(By.ID, "idSIButton9").click()  # iniciar sesión
+        
+        # Espera a que aparezca el cuadro de confirmación
+        try:
+            # Espera a que el botón "Sí" esté visible
+            accept_button = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.ID, "acceptButton"))
+            )
+            accept_button.click()  # Haz clic en el botón "Sí"
+        except Exception:
+            print("No se encontró el botón de aceptación en el tiempo esperado.")
 
     def verify_login_success(self):
         # Esperar a que el título contenga "Outlook"
