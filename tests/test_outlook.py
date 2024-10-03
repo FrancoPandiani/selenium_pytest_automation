@@ -16,7 +16,7 @@ def outlook_page(setup_teardown):
     page.open()
     page.login(OUTLOOK_EMAIL, OUTLOOK_PASSWORD)
     yield page  # Permite a las pruebas usar la instancia autenticada
-    # No es necesario cerrar el driver aquí, ya que lo manejamos en setup_teardown
+    # No es necesario cerrar el driver, ya que lo manejamos en setup_teardown
 
 def test_login(outlook_page):
     assert OUTLOOK_EMAIL is not None, "El email no está configurado."
@@ -25,7 +25,6 @@ def test_login(outlook_page):
 
 def test_click_nav_menu_button(outlook_page):
     outlook_page.click_nav_menu_button()
-    # Aquí puedes agregar aserciones para verificar el resultado del clic
 
 """
 def test_button(setup_teardown):
