@@ -3,23 +3,29 @@ from selenium import webdriver
 from pages.outlook_page import OutlookPage
 from config.config import OUTLOOK_EMAIL, OUTLOOK_PASSWORD
 
-@pytest.fixture(scope="module",autouse=True)
+@pytest.fixture(scope="module", autouse=True)
 def setup_teardown():
     driver = webdriver.Chrome()
     yield driver
     driver.quit()
     
-@pytest.mark.parametrize("email, password", [(OUTLOOK_EMAIL, OUTLOOK_PASSWORD)])
-def test_login(setup_teardown, email, password):
+@pytest.fixture(scope="module")
+def outlook_page(setup_teardown):
     driver = setup_teardown
-    outlook_page = OutlookPage(driver)
-    outlook_page.open()
+    page = OutlookPage(driver)
+    page.open()
+    page.login(OUTLOOK_EMAIL, OUTLOOK_PASSWORD)
+    yield page  # Permite a las pruebas usar la instancia autenticada
+    # No es necesario cerrar el driver aquí, ya que lo manejamos en setup_teardown
 
-    assert email is not None, "El email no está configurado."
-    assert password is not None, "El password no está configurado."
-
-    outlook_page.login(email, password)
+def test_login(outlook_page):
+    assert OUTLOOK_EMAIL is not None, "El email no está configurado."
+    assert OUTLOOK_PASSWORD is not None, "El password no está configurado."
     outlook_page.verify_login_success()
+
+def test_click_nav_menu_button(outlook_page):
+    outlook_page.click_nav_menu_button()
+    # Aquí puedes agregar aserciones para verificar el resultado del clic
 
 """
 def test_button(setup_teardown):

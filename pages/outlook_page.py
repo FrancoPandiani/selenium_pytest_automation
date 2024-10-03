@@ -40,13 +40,11 @@ class OutlookPage:
 
     def verify_login_success(self):
         # Esperar a que el título contenga "Microsoft"
-        print(self.driver.title)
         WebDriverWait(self.driver, 10).until(EC.title_contains("Microsoft"))
-        assert "Microsoft" in self.driver.title, "Login failed, title does not contain Microsoft "
+        assert "Microsoft" in self.driver.title, "Login failed, title does not contain Microsoft."
         
-    def click_button(self):
-       # button = WebDriverWait(self.driver, 10).until(
-       # EC.element_to_be_clickable((By.XPATH, "//div[@id='app']//div[contains(@class, 'QdrUx')]//div[@id='O365_NavHeader']//div[@id='O365_HeaderRightRegion']//div[@id='O365_UniversalMeContainer']//div[contains(@class, 'mectrl_root')]//button[@id='mectrl_main_trigger']")))
-       button = WebDriverWait(self.driver, 10).until(
-       EC.element_to_be_clickable((By.ID, "mectrl_main_trigger")))
-       button.click()
+    def click_nav_menu_button(self):
+        button = WebDriverWait(self.driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="O365_MainLink_NavMenu"]'))
+        )
+        button.click()
