@@ -27,11 +27,10 @@ class OutlookPage:
         password_input.send_keys(password)
         
         # Hacer clic en el botón "Iniciar sesión"
-        self.driver.find_element(By.ID, "idSIButton9").click()  # iniciar sesión
+        self.driver.find_element(By.ID, "idSIButton9").click()
         
         # Espera a que aparezca el cuadro de confirmación
         try:
-            # Espera a que el botón "Sí" esté visible
             accept_button = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.ID, "acceptButton"))
             )
@@ -44,10 +43,10 @@ class OutlookPage:
         print(self.driver.title)
         WebDriverWait(self.driver, 10).until(EC.title_contains("Microsoft"))
         assert "Microsoft" in self.driver.title, "Login failed, title does not contain Microsoft "
-
-
-    def logout(self):
-        pass
-       # profile_icon = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//button[@id='profile-button']")))
-       # profile_icon.click()
-       # WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "id_signout"))).click()
+        
+    def click_button(self):
+       # button = WebDriverWait(self.driver, 10).until(
+       # EC.element_to_be_clickable((By.XPATH, "//div[@id='app']//div[contains(@class, 'QdrUx')]//div[@id='O365_NavHeader']//div[@id='O365_HeaderRightRegion']//div[@id='O365_UniversalMeContainer']//div[contains(@class, 'mectrl_root')]//button[@id='mectrl_main_trigger']")))
+       button = WebDriverWait(self.driver, 10).until(
+       EC.element_to_be_clickable((By.ID, "mectrl_main_trigger")))
+       button.click()
