@@ -25,4 +25,3 @@ def test_login(outlook_page):
 
 def test_click_nav_menu_button(outlook_page):
     outlook_page.click_nav_menu_button()
-

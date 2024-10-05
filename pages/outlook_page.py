@@ -1,16 +1,10 @@
+from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config.config import Config
 
-class OutlookPage:
-    def __init__(self, driver):
-        self.driver = driver
-        self.url = Config.LOG_URL
-
-    def open(self):
-        self.driver.get(self.url)
-
+class OutlookPage(BasePage):
     def login(self, email, password):
         email_input = WebDriverWait(self.driver, Config.TIMEOUT).until(
             EC.visibility_of_element_located((By.ID, "i0116"))
@@ -32,9 +26,9 @@ class OutlookPage:
 
     def verify_login_success(self):
         WebDriverWait(self.driver, Config.TIMEOUT).until(EC.title_contains("Microsoft"))
-        assert "Microsoft" in self.driver.title, "El titulo no contiene la palabra Microsoft."
+        assert "Microsoft" in self.driver.title, "El título no contiene la palabra Microsoft."
 
     def click_nav_menu_button(self):
         button = WebDriverWait(self.driver, Config.TIMEOUT).until(
-            EC.element_to_be_clickable((By.XPATH, '//*[@id="O365_MainLink_NavMenu"]')) )
+            EC.element_to_be_clickable((By.XPATH, '//*[@id="O365_MainLink_NavMenu"]')))
         button.click()
