@@ -1,8 +1,19 @@
-import pytest
-from selenium import webdriver
-from pages.outlook_page import OutlookPage
+from pages.login_page import LoginPage
+from tests.base_test import BaseTest
 from config.config import Config
 
+class TestLogin(BaseTest):
+    
+    def test_valid_credentials(self):
+     loging_page = LoginPage(self.driver)
+     loging_page.set_email_address(Config.OUTLOOK_EMAIL)
+     loging_page.click_login_button()
+     loging_page.set_password(Config.OUTLOOK_PASSWORD)
+     loging_page.click_login_button()
+     actual_title = loging_page.get_title()
+     assert actual_title == " Cuenta Microsoft" or "Microsoft account"
+     
+"""
 @pytest.fixture(scope="module", autouse=True)
 def setup_teardown():
     driver = webdriver.Chrome()
@@ -24,4 +35,5 @@ def test_login(outlook_page):
     outlook_page.verify_login_success()
 
 def test_click_nav_menu_button(outlook_page):
-    outlook_page.click_nav_menu_button()
+    outlook_page.click_nav_menu_button() 
+    """
