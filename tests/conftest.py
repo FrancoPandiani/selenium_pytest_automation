@@ -1,6 +1,6 @@
 import pytest
 from selenium import webdriver
-from config.config import Config
+from utils.test_data import TestData
 
 @pytest.fixture(params=["chrome","firefox"])
 def initialize_driver(request):
@@ -13,7 +13,7 @@ def initialize_driver(request):
         driver= webdriver.Edge()
     request.cls.driver = driver
     print ("Browser", request.param)
-    driver.get(Config.LOG_URL)
+    driver.get(TestData.LOG_URL)
     driver.maximize_window()
     yield 
     print("Close Driver")
