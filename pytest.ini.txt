@@ -4,4 +4,4 @@ markers =
     regression: Regression Test
     sanity
     integration:
-addopts = -rA -v --html=AutomationPytestReport.html
+addopts = -rA -v --html=reports/AutomationPytestReport.html
