@@ -8,7 +8,10 @@ class BasePage(ABC):
     
     def __init__(self, driver):
         self.driver = driver
-        
+    
+    def open(self):
+        self.driver.get(self.url)
+            
     def find(self, *locator):
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
         return self.driver.find_element(*locator)
@@ -25,6 +28,3 @@ class BasePage(ABC):
     
     def get_title(self):
         return self.driver.title
-
-    def open(self):
-        self.driver.get(self.url)

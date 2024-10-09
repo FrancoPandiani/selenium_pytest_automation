@@ -9,8 +9,9 @@ class Config:
     
     OUTLOOK_EMAIL = os.getenv("OUTLOOK_EMAIL")
     OUTLOOK_PASSWORD = os.getenv("OUTLOOK_PASSWORD")
-    LOG_URL = os.getenv("LOG_URL", "https://login.live.com")
-    TIMEOUT = int(os.getenv("TIMEOUT", 10))
+    LOG_URL = str(os.getenv("LOG_URL"))
+    MAIL_URL = str(os.getenv("MAIL_URL"))
+    TIMEOUT = int(os.getenv("TIMEOUT"))
 
 if __name__ == "__main__":
     print(f"Email: {Config.OUTLOOK_EMAIL}")

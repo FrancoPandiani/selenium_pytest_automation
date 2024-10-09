@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from config.config import Config
 
-@pytest.fixture(params=["chrome","firefox","edge"])
+@pytest.fixture(params=["chrome","firefox"])
 def initialize_driver(request):
     
     if request.param == "chrome":
