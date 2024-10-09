@@ -1,6 +1,7 @@
 from abc import ABC
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from config.config import Config
 
 # Aplique el patrón 'Template Method' para mayor flexibilidad y reutilizacion.
 
@@ -13,7 +14,7 @@ class BasePage(ABC):
         self.driver.get(self.url)
             
     def find(self, *locator):
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(locator))
+        WebDriverWait(self.driver,Config.TIME_OUT).until(EC.presence_of_element_located(locator))
         return self.driver.find_element(*locator)
     
     def click(self,locator):

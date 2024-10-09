@@ -9,7 +9,7 @@ class Config:
     
     OUTLOOK_EMAIL = os.getenv("OUTLOOK_EMAIL")
     OUTLOOK_PASSWORD = os.getenv("OUTLOOK_PASSWORD")
-    TIMEOUT = int(os.getenv("TIMEOUT"))
+    TIME_OUT = int(os.getenv("TIMEOUT"))
 
 if __name__ == "__main__":
     print(f"Email: {Config.OUTLOOK_EMAIL}")

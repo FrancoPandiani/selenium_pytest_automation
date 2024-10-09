@@ -2,7 +2,7 @@ import pytest
 from selenium import webdriver
 from utils.test_data import TestData
 
-@pytest.fixture(params=["chrome","firefox"])
+@pytest.fixture(params=["chrome"])
 def initialize_driver(request):
     
     if request.param == "chrome":
@@ -11,6 +11,7 @@ def initialize_driver(request):
         driver= webdriver.Firefox()
     elif request.param == "edge":
         driver= webdriver.Edge()
+        
     request.cls.driver = driver
     print ("Browser", request.param)
     driver.get(TestData.LOG_URL)

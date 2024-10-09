@@ -15,8 +15,9 @@ class TestLogin(BaseTest):
      
     def test_invalid_credentials(self):
         login_page = LoginPage(self.driver)
-        login_page.log_into_app
-        
-    def get_warning_message (self):
-        pass
+        login_page.set_email_address("email invalido")
+        login_page.click_login_button()
+        actual_message = login_page.get_warning_message()
+        assert actual_message.__contains__("Escriba una dirección de correo electrónico, un número de teléfono o un nombre Skype válidos.")
+
      
